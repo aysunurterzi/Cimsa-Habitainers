@@ -11,6 +11,88 @@ body {
   /* Bileşenin metin rengi */
 }
 
+#forest {
+  position: fixed;
+  top: 20px;
+  left: 180px;
+  width: 70px;
+  height: 70px;
+  padding: 10px 20px;
+  background-color: transparent;
+  background-image: url("/icon/forest.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9999;
+  /* Diğer öğelerin üzerine çıkması için */
+}
+
+#task {
+  position: fixed;
+  top: 20px;
+  left: 100px;
+  width: 70px;
+  height: 70px;
+  padding: 10px 20px;
+  background-color: transparent;
+  background-image: url("/icon/task.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9999;
+  /* Diğer öğelerin üzerine çıkması için */
+}
+
+#dashboard {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  width: 70px;
+  height: 70px;
+  padding: 10px 20px;
+  background-color: transparent;
+  background-image: url("/icon/dashboard.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9999;
+  /* Diğer öğelerin üzerine çıkması için */
+}
+
+#logout {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 18px;
+  width: 70px;
+  height: 70px;
+  padding: 10px 20px;
+  background-color: transparent;
+  background-image: url("/icon/logout.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 9999;
+  /* Diğer öğelerin üzerine çıkması için */
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -40,15 +122,18 @@ body {
   margin-right: 30px;
   text-align: center;
   height: 75px;
+
 }
 
 #text h1 {
   color: #000;
   font-family: Inter;
-  font-size: 35px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 1000;
   line-height: normal;
+
+
 }
 
 #key {
@@ -56,7 +141,7 @@ body {
   background: #B2EA70;
   height: 50px;
   width: 120px;
-  margin-top: -10px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
 }
@@ -157,6 +242,30 @@ img.cage {
   text-align: center;
 }
 
+
+/* Pop-up stilleri */
+.second-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  height: 60%;
+  background: #fffec4;
+  background-image: url("/icon/celebrate.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  /* Diğer elemanların üzerinde olması için z-index değeri */
+  text-align: center;
+}
+
+
 .popup-content {
   text-align: center;
   color: black;
@@ -191,6 +300,11 @@ img.cage {
 
 .popup-content button:hover {
   background-color: #B2EA70;
+  /* Hover rengi */
+}
+
+.popup-content #close:hover {
+  background-color: red;
   /* Hover rengi */
 }
 
@@ -231,7 +345,7 @@ img.cage {
 
 .header h1 {
   position: absolute;
- 
+
   color: #ffffff;
   text-align: center;
   font-family: "Seymour One", sans-serif;
@@ -245,10 +359,10 @@ img.cage {
   margin-left: -10px;
 }
 
-.header h1 h1{
- 
+.header h1 h1 {
+
   top: 0;
-  
+
   color: #1D647E;
   text-align: center;
   font-family: "Seymour One", sans-serif;
@@ -282,4 +396,15 @@ img.cage {
 
 .pagination button:hover {
   border: 1px solid #000;
+}
+
+#happyContent {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 80px;
+  font-size: xx-large;
+
 }

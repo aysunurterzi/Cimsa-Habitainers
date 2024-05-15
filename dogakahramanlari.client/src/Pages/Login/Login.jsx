@@ -36,10 +36,12 @@ const Login = () => {
                 },
                 body: JSON.stringify({ username: loginData.username, password: loginData.password })
             });
-            const content = await loginRequest.json();
-            console.log(content)
-            window.localStorage.setItem('token', content.accessToken);
-            if (200 <= content.status && content.status <= 299) {
+            if (200 <= loginRequest.status && loginRequest.status <= 299) {
+                const content = await loginRequest.json();
+                console.log(content)
+                window.localStorage.setItem('token', content.accessToken);
+                window.localStorage.setItem('userId', content.userId);
+
                 navigate('/dashboard')
             } else {
                 alert('Giriş Yapılamadı')

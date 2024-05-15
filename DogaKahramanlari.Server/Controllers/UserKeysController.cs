@@ -30,8 +30,8 @@ namespace DogaKahramanlari.Server.Controllers
                 .GetAllUserKeysAsync(false));
         }
 
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetOneUserKeyByIdAsync([FromRoute] int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOneUserKeyByIdAsync([FromRoute] string id)
         {
             return Ok(await _services
                 .UserKeyService
@@ -53,8 +53,8 @@ namespace DogaKahramanlari.Server.Controllers
         }
 
 
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateOneUserKeyAsync([FromRoute(Name = "id")] int id,
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateOneUserKeyAsync([FromRoute(Name = "id")] string id,
                       [FromBody] UserKeyDtoForUpdate userkeyDto)
         {
             if (userkeyDto is null)

@@ -116,9 +116,9 @@ export const HomeIcon = () => (
 
 );
 
-export const KeyIcon = () => (
-<svg width="126" height="127" viewBox="0 0 126 127" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-<rect width="126" height="127" fill="url(#pattern0)"/>
+export const KeyIcon = ({width, height}) => (
+<svg width={width || 126} height={height || 127} viewBox="0 0 126 127" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+<rect width={126} height={127} fill="url(#pattern0)"/>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 <use xlinkHref="#image0_310_74" transform="matrix(0.01 0 0 0.00992126 0 0.00393701)"/>

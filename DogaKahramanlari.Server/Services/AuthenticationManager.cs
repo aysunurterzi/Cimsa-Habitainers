@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using DogaKahramanlari.Server.Models;
+using DogaKahramanlari.Server.Repositories.Contracts;
 using DogaKahramanlari.Server.Services.Contracts;
 using DogaKahramanlari.Server.Utilities.DataTransferObjects;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Authentication;
@@ -14,6 +17,7 @@ namespace DogaKahramanlari.Server.Services
 {
     public class AuthenticationManager : IAuthenticationService
     {
+        private readonly IRepositoryManager _manager;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
@@ -21,10 +25,12 @@ namespace DogaKahramanlari.Server.Services
         private User? _user;
 
         public AuthenticationManager(
+            IRepositoryManager manager,
             IMapper mapper,
             UserManager<User> userManager,
             IConfiguration configuration)
         {
+            _manager = manager;
             _mapper = mapper;
             _userManager = userManager;
             _configuration = configuration;
@@ -54,8 +60,9 @@ namespace DogaKahramanlari.Server.Services
                 UserName = _user.UserName,
                 UserId = _user.Id
 
-    };
+            };
         }
+
 
         public async Task<IdentityResult> RegisterUser(UserForRegistrationDto userForRegistrationDto)
         {
@@ -65,9 +72,25 @@ namespace DogaKahramanlari.Server.Services
                 .CreateAsync(user, userForRegistrationDto.Password);
 
             if (result.Succeeded)
+            {
                 await _userManager.AddToRolesAsync(user, userForRegistrationDto.Roles);
+
+                // UserKeys tablosuna yeni bir kayıt ekleyin
+                var userKeys = new UserKey
+                {
+                    Id = user.Id,
+                    NumberOfKeys = 0
+                };
+
+                _manager.UserKeyRepository.CreateOneUserKey(userKeys);
+                await _manager.SaveAsync();
+                //_dbContext.UserKeys.Add(userKeys);
+                //await _dbContext.SaveChangesAsync();
+            }
+
             return result;
         }
+
 
         public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuthDto)
         {

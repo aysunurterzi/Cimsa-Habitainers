@@ -67,7 +67,7 @@ namespace DogaKahramanlari.Server.Controllers
                 return UnprocessableEntity(ModelState);
 
             await _services.AnimalService.UpdateOneAnimalAsync(id, animalDto, false);
-            return Ok(); 
+            return Ok(200); 
         }
 
         [HttpDelete("{id:int}")]

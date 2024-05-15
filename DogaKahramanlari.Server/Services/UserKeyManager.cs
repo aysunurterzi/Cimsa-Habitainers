@@ -30,7 +30,7 @@ namespace DogaKahramanlari.Server.Services
                 .UserKeyRepository
                 .GetAllUserKeysAsync(trackChanges);
         }
-        public async Task<UserKey> GetOneUserKeyByIdAsync(int id, bool trackChanges)
+        public async Task<UserKey> GetOneUserKeyByIdAsync(string id, bool trackChanges)
         {
 
             var userKey = await _manager
@@ -41,16 +41,23 @@ namespace DogaKahramanlari.Server.Services
                 throw new ArgumentNullException(nameof(userKey), "Userkey cannot be null.");
             return userKey;
         }
-        public async Task UpdateOneUserKeyAsync(int id, UserKeyDtoForUpdate userkeyDto, bool trackChanges)
+        public async Task UpdateOneUserKeyAsync(string id, UserKeyDtoForUpdate userkeyDto, bool trackChanges)
         {
             var entity = await _manager.UserKeyRepository.GetOneUserKeyByIdAsync(id, trackChanges);
 
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity), "Userkey cannot be null.");
 
-            //Mapping
-            entity = _mapper.Map<UserKey>(userkeyDto);
+            // Güncelleme işlemi öncesinde entity'nin değerlerini userkeyDto'dan alınan değerlerle güncelleyin
+            _mapper.Map(userkeyDto, entity);
 
+            // Bu satırda UpdateOneUserKey metodunu çağırmadan önce entity'nin Id'sinin boş olmadığından emin olun
+            if (string.IsNullOrEmpty(entity.Id))
+            {
+                throw new ArgumentException("UserKey entity Id cannot be null or empty.", nameof(entity.Id));
+            }
+
+            // UpdateOneUserKey metodunu çağırarak güncelleme işlemini gerçekleştirin
             _manager.UserKeyRepository.UpdateOneUserKey(entity);
             await _manager.SaveAsync();
         }

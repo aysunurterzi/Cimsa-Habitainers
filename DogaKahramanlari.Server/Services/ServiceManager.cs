@@ -22,7 +22,7 @@ namespace DogaKahramanlari.Server.Services
         {
 
             _authencationService = new Lazy<IAuthenticationService>(() =>
-            new AuthenticationManager(mapper, userManager, configuration));
+            new AuthenticationManager(repositoryManager,mapper, userManager, configuration));
 
             _animalService = new Lazy<IAnimalService>(() =>
            new AnimalManager(repositoryManager, mapper));

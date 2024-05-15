@@ -2,7 +2,7 @@
 {
     public class UserKeyDtoForInsertion
     {
-        public string UserId { get; set; }
-        public int NumberOfKeys { get; set; }
+        public string Id { get; set; }
+        public int? NumberOfKeys { get; set; }
     }
 }

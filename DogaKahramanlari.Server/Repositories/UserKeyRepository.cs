@@ -14,7 +14,7 @@ namespace DogaKahramanlari.Server.Repositories
                          await FindAll(trackChanges)
                         .ToListAsync();
 
-        public async Task<UserKey> GetOneUserKeyByIdAsync(int id, bool trackChanges) =>
+        public async Task<UserKey> GetOneUserKeyByIdAsync(string id, bool trackChanges) =>
            await FindByCondition(c => c.Id.Equals(id), trackChanges)
                 .SingleOrDefaultAsync();
         public void CreateOneUserKey(UserKey userKey) => Create(userKey);
