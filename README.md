@@ -6,7 +6,6 @@ In this game, children can save forest animals by completing daily and weekly ta
 
 Demo video of our project:
 
+https://github.com/aysunurterzi/Cimsa-Habitainers/assets/80470813/b1ac1336-8fc3-4b75-b221-b10c1cb6d622
 
-
-https://github.com/aysunurterzi/Cimsa-Habitainers/assets/80470813/db5c941c-fc18-400e-8f28-422142a712b5
 
